@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://Dejobe.github.io/DejobeDownloadManager/sitemap.xml
+Sitemap: https://dejobe.github.io/dejobe-website/sitemap.xml
