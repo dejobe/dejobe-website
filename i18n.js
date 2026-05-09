@@ -9,7 +9,7 @@ const LANG = {
     nav_setup: "Setup",
     nav_download: "Download Free",
     // Hero
-    chip: "v1.0.3 — Available Now",
+    chip: "v1.0.4 — Available Now",
     hero_l1: "Download",
     hero_l2: "8× Faster",
     hero_l3: "Than Your Browser",
