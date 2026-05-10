@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Dejobe — Premium Animations v3
  * Splash intro, cursor system, data streams, text scramble,
  * magnetic buttons, 3D tilt, parallax, scroll progress, ripples
@@ -416,62 +416,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
   document.querySelectorAll(".speed-item").forEach(s => cObs.observe(s));
 
-  /* ═══ Screenshot Tabs — Auto-Slide Carousel ═════════════ */
+  /* ═══ Screenshot Tabs — Slide Transition ════════════════ */
   const tabs = document.querySelectorAll(".stab");
   const sImg = document.getElementById("showcaseImg");
   let currentTab = 0;
-  let autoSlideTimer = null;
-
-  function switchTab(idx) {
-    if (idx === currentTab) return;
-    const dir = idx > currentTab ? 1 : -1;
-    tabs.forEach(x => x.classList.remove("active"));
-    tabs[idx].classList.add("active");
-
-    // Slide out
-    sImg.style.transform = `translateX(${-dir * 40}px)`;
-    sImg.style.opacity = "0";
-    setTimeout(() => {
-      sImg.src = tabs[idx].dataset.src;
-      sImg.style.transform = `translateX(${dir * 40}px)`;
-      // Slide in
-      requestAnimationFrame(() => {
-        sImg.style.transform = "translateX(0)";
-        sImg.style.opacity = "1";
-      });
-    }, 280);
-    currentTab = idx;
-  }
-
-  // Manual click
   tabs.forEach((t, idx) => {
     t.addEventListener("click", () => {
-      switchTab(idx);
-      resetAutoSlide(); // Restart timer after manual click
+      if (idx === currentTab) return;
+      const dir = idx > currentTab ? 1 : -1;
+      tabs.forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+
+      // Slide out
+      sImg.style.transform = `translateX(${-dir * 40}px)`;
+      sImg.style.opacity = "0";
+      setTimeout(() => {
+        sImg.src = t.dataset.src;
+        sImg.style.transform = `translateX(${dir * 40}px)`;
+        // Slide in
+        requestAnimationFrame(() => {
+          sImg.style.transform = "translateX(0)";
+          sImg.style.opacity = "1";
+        });
+      }, 280);
+      currentTab = idx;
     });
   });
-
-  // Auto-slide every 4 seconds
-  function startAutoSlide() {
-    autoSlideTimer = setInterval(() => {
-      const next = (currentTab + 1) % tabs.length;
-      switchTab(next);
-    }, 4000);
-  }
-
-  function resetAutoSlide() {
-    clearInterval(autoSlideTimer);
-    startAutoSlide();
-  }
-
-  // Pause on hover
-  const showcaseSection = document.querySelector(".showcase");
-  if (showcaseSection) {
-    showcaseSection.addEventListener("mouseenter", () => clearInterval(autoSlideTimer));
-    showcaseSection.addEventListener("mouseleave", () => startAutoSlide());
-  }
-
-  startAutoSlide();
 
   /* ═══ Timeline — Progressive Reveal ═════════════════════ */
   const tlLine = document.querySelector(".tl-line-fill");
