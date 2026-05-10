@@ -7,6 +7,7 @@ const LANG = {
     nav_features: "Features",
     nav_screenshots: "Screenshots",
     nav_setup: "Setup",
+    nav_tutorial: "Tutorial",
     nav_download: "Download Free",
     // Hero
     chip: "v1.1.0 - Available Now",
@@ -87,6 +88,13 @@ const LANG = {
     req_net_p: "Broadband connection recommended",
     req_browser_h: "Browser",
     req_browser_p: "Chrome / Edge (for extension)",
+    // Tutorial
+    tut_chip: "Tutorial",
+    tut_title: "Watch How It Works",
+    tut_sub: "Learn how to use Dejobe in minutes — from installation to downloading at full speed.",
+    tut_bar: "Official Tutorial — Dejobe Download Manager",
+    tut_play: "▶ Watch Tutorial",
+    tut_channel: "Subscribe to our YouTube channel for more tutorials",
     // Footer
     foot_name: "Dejobe Download Manager",
     foot_copy: "© 2026 Dejobe",
@@ -103,6 +111,7 @@ const LANG = {
     nav_features: "المميزات",
     nav_screenshots: "لقطات الشاشة",
     nav_setup: "التثبيت",
+    nav_tutorial: "الشرح",
     nav_download: "تحميل مجاني",
     chip: "الإصدار 1.1.0 — متاح الآن",
     hero_l1: "حمّل",
@@ -177,6 +186,13 @@ const LANG = {
     req_net_p: "اتصال عريض النطاق موصى به",
     req_browser_h: "المتصفح",
     req_browser_p: "Chrome / Edge (للإضافة)",
+    // فيديو تعليمي
+    tut_chip: "شرح الاستخدام",
+    tut_title: "شاهد طريقة الاستخدام",
+    tut_sub: "تعلّم كيف تستخدم Dejobe في دقائق — من التثبيت إلى التحميل بأقصى سرعة.",
+    tut_bar: "الشرح الرسمي — Dejobe مدير التحميل",
+    tut_play: "▶ شاهد الشرح",
+    tut_channel: "اشترك في قناتنا على يوتيوب لمزيد من الشروحات",
     foot_name: "Dejobe مدير التحميل",
     foot_copy: "© 2026 Dejobe",
     dev_title: "عن المطوّر",

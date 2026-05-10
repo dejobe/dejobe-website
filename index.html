@@ -39,6 +39,7 @@
             <div class="nav-links" id="navLinks">
                 <a href="#features" data-i18n="nav_features">Features</a>
                 <a href="#showcase" data-i18n="nav_screenshots">Screenshots</a>
+                <a href="#tutorial" data-i18n="nav_tutorial">Tutorial</a>
                 <a href="#steps" data-i18n="nav_setup">Setup</a>
                 <a href="#download" class="nav-btn" data-i18n="nav_download">Download Free</a>
                 <button class="lang-toggle" id="langToggle">العربية</button>
@@ -203,6 +204,49 @@
                         <img id="showcaseImg" src="assets/screenshot-main.png" alt="Screenshot">
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TUTORIAL VIDEO -->
+    <section id="tutorial">
+        <div class="sec-inner">
+            <div class="sec-head" data-reveal>
+                <span class="sec-chip" data-i18n="tut_chip">Tutorial</span>
+                <h2 data-i18n="tut_title">Watch How It Works</h2>
+                <p class="tut-subtitle" data-i18n="tut_sub">Learn how to use Dejobe in minutes — from installation to downloading at full speed.</p>
+            </div>
+            <div class="tut-video-wrapper" data-reveal>
+                <div class="tut-glow"></div>
+                <div class="tut-frame">
+                    <div class="tut-bar">
+                        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+                        <span class="tut-bar-title" data-i18n="tut_bar">Official Tutorial — Dejobe Download Manager</span>
+                    </div>
+                    <div class="tut-video-container" id="tutVideoContainer">
+                        <!-- Thumbnail overlay (shown before play) -->
+                        <div class="tut-thumb-overlay" id="tutThumbOverlay">
+                            <img src="https://img.youtube.com/vi/tePoJtCyy4I/maxresdefault.jpg" alt="Tutorial thumbnail" class="tut-thumb-img">
+                            <button class="tut-play-btn" id="tutPlayBtn" aria-label="Play tutorial video">
+                                <svg viewBox="0 0 68 68" width="68" height="68">
+                                    <circle cx="34" cy="34" r="33" fill="rgba(6,10,20,.7)" stroke="rgba(34,211,238,.5)" stroke-width="2"/>
+                                    <polygon points="26,20 26,48 50,34" fill="var(--cyan)"/>
+                                </svg>
+                            </button>
+                            <span class="tut-play-label" data-i18n="tut_play">▶ Watch Tutorial</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tut-reflection"></div>
+            </div>
+            <div class="tut-channel" data-reveal>
+                <a href="https://www.youtube.com/@Dejobe" target="_blank" rel="noopener" class="tut-channel-link">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/>
+                        <polygon points="9.75,15.02 15.5,11.75 9.75,8.48" fill="currentColor" stroke="none"/>
+                    </svg>
+                    <span data-i18n="tut_channel">Subscribe to our YouTube channel for more tutorials</span>
+                </a>
             </div>
         </div>
     </section>

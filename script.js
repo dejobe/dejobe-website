@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Dejobe — Premium Animations v3
  * Splash intro, cursor system, data streams, text scramble,
  * magnetic buttons, 3D tilt, parallax, scroll progress, ripples
@@ -502,6 +502,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
 
     accentEl.style.transition = "opacity 0.3s, transform 0.3s cubic-bezier(.16,1,.3,1)";
+  }
+
+  /* ═══ Tutorial Video — Lazy YouTube Embed ════════════════ */
+  const tutPlayBtn = document.getElementById("tutPlayBtn");
+  const tutOverlay = document.getElementById("tutThumbOverlay");
+  const tutContainer = document.getElementById("tutVideoContainer");
+  if (tutPlayBtn && tutOverlay && tutContainer) {
+    function loadTutorialVideo() {
+      tutOverlay.classList.add("hidden");
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/tePoJtCyy4I?autoplay=1&rel=0&modestbranding=1";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.title = "Dejobe Download Manager — Tutorial";
+      tutContainer.appendChild(iframe);
+    }
+    tutPlayBtn.addEventListener("click", loadTutorialVideo);
+    tutOverlay.addEventListener("click", loadTutorialVideo);
   }
 
   /* ═══ Smooth Anchors ════════════════════════════════════ */
