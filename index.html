@@ -460,7 +460,7 @@
         // ── Visitor Counter (GoatCounter API) ──
         var vEl = document.getElementById('visitorCount');
         if (vEl) {
-            fetch('https://dejobe.goatcounter.com/counter/' + encodeURIComponent('/') + '.json')
+            fetch('https://dejobe.goatcounter.com/counter/TOTAL.json')
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     var count = parseInt(data.count.replace(/\u00a0/g, ''), 10) || 0;
@@ -481,7 +481,7 @@
             // Fetch each star level and sum totals
             var starPaths = [1,2,3,4,5];
             var fetches = starPaths.map(function(s) {
-                return fetch('https://dejobe.goatcounter.com/counter/' + encodeURIComponent('/app-rating/' + s + '-stars') + '.json')
+                return fetch('https://dejobe.goatcounter.com/counter//app-rating/' + s + '-stars.json')
                     .then(function(r) { return r.json(); })
                     .then(function(data) {
                         return parseInt((data.count || '0').replace(/\u00a0/g, ''), 10) || 0;
