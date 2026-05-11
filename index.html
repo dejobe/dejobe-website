@@ -115,6 +115,11 @@
                 <span class="speed-num" id="dlCount">—</span>
                 <span class="speed-label" data-i18n="stat_downloads">Downloads</span>
             </div>
+            <div class="speed-sep"></div>
+            <div class="speed-item" id="visitorCountStat">
+                <span class="speed-num" id="visitorCount">—</span>
+                <span class="speed-label" data-i18n="stat_visitors">Visitors</span>
+            </div>
         </div>
     </section>
 
@@ -447,8 +452,25 @@
                 })
                 .catch(function() { dlEl.textContent = '—'; });
         }
-    });
-    </script>
+        // ── Visitor Counter (GoatCounter API) ──
+        var vEl = document.getElementById('visitorCount');
+        if (vEl) {
+            fetch('https://dejobe.goatcounter.com/counter/' + encodeURIComponent('/') + '.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var count = parseInt(data.count.replace(/\u00a0/g, ''), 10) || 0;
+                    if (count === 0) { vEl.textContent = '0'; return; }
+                    var cur = 0;
+                    var step = Math.max(1, Math.floor(count / 30));
+                    var t = setInterval(function() {
+                        cur += step;
+                        if (cur >= count) { cur = count; clearInterval(t); }
+                        vEl.textContent = cur.toLocaleString();
+                    }, 30);
+                })
+                .catch(function() { vEl.textContent = '—'; });
+        }
+    });    </script>
 
     <script src="i18n.js"></script>
     <script src="script.js"></script>
