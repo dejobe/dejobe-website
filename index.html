@@ -110,6 +110,11 @@
                 <span class="speed-num">0</span>
                 <span class="speed-label" data-i18n="stat4">Languages</span>
             </div>
+            <div class="speed-sep"></div>
+            <div class="speed-item" id="downloadCountStat">
+                <span class="speed-num" id="dlCount">—</span>
+                <span class="speed-label" data-i18n="stat_downloads">Downloads</span>
+            </div>
         </div>
     </section>
 
@@ -407,6 +412,35 @@
             </div>
         </div>
     </footer>
+
+    <!-- GoatCounter — privacy-friendly visitor analytics -->
+    <script data-goatcounter="https://dejobe.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
+    <!-- GitHub download counter -->
+    <script>
+    (function() {
+        var el = document.getElementById('dlCount');
+        if (!el) return;
+        fetch('https://api.github.com/repos/dejobe/dejobe-website/releases')
+            .then(function(r) { return r.json(); })
+            .then(function(releases) {
+                var total = 0;
+                releases.forEach(function(rel) {
+                    rel.assets.forEach(function(a) { total += a.download_count; });
+                });
+                // Animate the counter
+                var current = 0;
+                var step = Math.max(1, Math.floor(total / 40));
+                var timer = setInterval(function() {
+                    current += step;
+                    if (current >= total) { current = total; clearInterval(timer); }
+                    el.textContent = current.toLocaleString();
+                }, 30);
+            })
+            .catch(function() { el.textContent = '—'; });
+    })();
+    </script>
 
     <script src="i18n.js"></script>
     <script src="script.js"></script>

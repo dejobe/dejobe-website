@@ -23,6 +23,7 @@ const LANG = {
     stat2: "Video Sites",
     stat3: "Speed Boost",
     stat4: "Languages",
+    stat_downloads: "Downloads",
     // Features
     feat_chip: "Features",
     feat_title: "Everything Built In",
@@ -125,6 +126,7 @@ const LANG = {
     stat2: "موقع فيديو",
     stat3: "أضعاف السرعة",
     stat4: "لغات",
+    stat_downloads: "تحميلات",
     feat_chip: "المميزات",
     feat_title: "كل شيء مدمج",
     f1_h: "محرك متعدد الأجزاء",
