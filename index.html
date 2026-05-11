@@ -120,6 +120,11 @@
                 <span class="speed-num" id="visitorCount">—</span>
                 <span class="speed-label" data-i18n="stat_visitors">Visitors</span>
             </div>
+            <div class="speed-sep"></div>
+            <div class="speed-item" id="ratingCountStat">
+                <span class="speed-num" id="ratingCount">—</span>
+                <span class="speed-label" data-i18n="stat_ratings">User Ratings</span>
+            </div>
         </div>
     </section>
 
@@ -469,6 +474,42 @@
                     }, 30);
                 })
                 .catch(function() { vEl.textContent = '—'; });
+        }
+        // ── Rating Counter (GoatCounter API) ──
+        var rEl = document.getElementById('ratingCount');
+        if (rEl) {
+            // Fetch each star level and sum totals
+            var starPaths = [1,2,3,4,5];
+            var fetches = starPaths.map(function(s) {
+                return fetch('https://dejobe.goatcounter.com/counter/' + encodeURIComponent('/app-rating/' + s + '-stars') + '.json')
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        return parseInt((data.count || '0').replace(/\u00a0/g, ''), 10) || 0;
+                    })
+                    .catch(function() { return 0; });
+            });
+            Promise.all(fetches).then(function(counts) {
+                var total = counts.reduce(function(a, b) { return a + b; }, 0);
+                if (total === 0) { rEl.textContent = '0'; return; }
+                // Calculate average stars
+                var weighted = 0;
+                for (var i = 0; i < counts.length; i++) {
+                    weighted += counts[i] * (i + 1);
+                }
+                var avg = (weighted / total).toFixed(1);
+                // Animate count-up then show average
+                var cur = 0;
+                var step = Math.max(1, Math.floor(total / 30));
+                var t = setInterval(function() {
+                    cur += step;
+                    if (cur >= total) { cur = total; clearInterval(t); }
+                    rEl.textContent = cur.toLocaleString();
+                }, 30);
+                // After animation, append star average
+                setTimeout(function() {
+                    rEl.innerHTML = total.toLocaleString() + ' <small style="color:#f59e0b;font-size:0.65em;">★ ' + avg + '</small>';
+                }, 1200);
+            });
         }
     });    </script>
 
