@@ -397,6 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
+      if (!e.target.dataset.count) { cObs.unobserve(e.target); return; }
       const el = e.target.querySelector(".speed-num");
       const target = parseInt(e.target.dataset.count);
       const suffix = e.target.dataset.suffix || "";
