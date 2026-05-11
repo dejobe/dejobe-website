@@ -417,29 +417,37 @@
     <script data-goatcounter="https://dejobe.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
-    <!-- GitHub download counter -->
+    <!-- GitHub download counter + GoatCounter visitor display -->
     <script>
-    (function() {
-        var el = document.getElementById('dlCount');
-        if (!el) return;
-        fetch('https://api.github.com/repos/dejobe/dejobe-website/releases')
-            .then(function(r) { return r.json(); })
-            .then(function(releases) {
-                var total = 0;
-                releases.forEach(function(rel) {
-                    rel.assets.forEach(function(a) { total += a.download_count; });
-                });
-                // Animate the counter
-                var current = 0;
-                var step = Math.max(1, Math.floor(total / 40));
-                var timer = setInterval(function() {
-                    current += step;
-                    if (current >= total) { current = total; clearInterval(timer); }
-                    el.textContent = current.toLocaleString();
-                }, 30);
-            })
-            .catch(function() { el.textContent = '—'; });
-    })();
+    window.addEventListener('DOMContentLoaded', function() {
+        // ── Download Counter (GitHub API) ──
+        var dlEl = document.getElementById('dlCount');
+        if (dlEl) {
+            fetch('https://api.github.com/repos/dejobe/dejobe-website/releases')
+                .then(function(r) { return r.json(); })
+                .then(function(releases) {
+                    if (!Array.isArray(releases)) { dlEl.textContent = '—'; return; }
+                    var total = 0;
+                    for (var i = 0; i < releases.length; i++) {
+                        var assets = releases[i].assets;
+                        if (!assets) continue;
+                        for (var j = 0; j < assets.length; j++) {
+                            total += (assets[j].download_count || 0);
+                        }
+                    }
+                    if (total === 0) { dlEl.textContent = '0'; return; }
+                    // Animate count-up
+                    var cur = 0;
+                    var step = Math.max(1, Math.floor(total / 30));
+                    var t = setInterval(function() {
+                        cur += step;
+                        if (cur >= total) { cur = total; clearInterval(t); }
+                        dlEl.textContent = cur.toLocaleString();
+                    }, 30);
+                })
+                .catch(function() { dlEl.textContent = '—'; });
+        }
+    });
     </script>
 
     <script src="i18n.js"></script>
